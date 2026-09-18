@@ -100,7 +100,11 @@ const side = (label, endpoint, status) => {
   node.append(element("code", null, endpoint.slug));
   if (status.installed) {
     node.append(
-      element("span", "tag ok", `installed ${status.version} · ${status.state}`),
+      element(
+        "span",
+        "tag ok",
+        `installed ${status.version} · ${status.state}`,
+      ),
     );
   } else {
     node.append(element("span", "tag", "not installed"));

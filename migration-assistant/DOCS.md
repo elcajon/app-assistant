@@ -32,18 +32,18 @@ the plan.
 
 Press **Migrate** and choose which of the optional steps should run:
 
-| Step                             | Default | What it does                                     |
-| -------------------------------- | ------- | ------------------------------------------------ |
+| Step                              | Default | What it does                                     |
+| --------------------------------- | ------- | ------------------------------------------------ |
 | Add the repository of the new app | always  | Adds the store repository of the plan            |
-| Install the new app              | always  | Installs the new app, if it is not installed yet  |
-| Back up the new app              | on      | Partial backup, only if the new app existed       |
-| Stop the old app                 | always  | Stops the old app before anything is copied       |
-| Back up the old app              | on      | Partial backup of the old app                     |
-| Copy the configuration           | always  | Copies the options, mapped by the plan            |
-| Copy the internal data           | always  | Copies `/data` of the old app to the new one      |
-| Set the old app to manual start   | always  | Turns off start on boot and the watchdog          |
-| Start the new app                | on      | Starts the new app                                |
-| Uninstall the old app            | off     | Removes the old app                               |
+| Install the new app               | always  | Installs the new app, if it is not installed yet |
+| Back up the new app               | on      | Partial backup, only if the new app existed      |
+| Stop the old app                  | always  | Stops the old app before anything is copied      |
+| Back up the old app               | on      | Partial backup of the old app                    |
+| Copy the configuration            | always  | Copies the options, mapped by the plan           |
+| Copy the internal data            | always  | Copies `/data` of the old app to the new one     |
+| Set the old app to manual start   | always  | Turns off start on boot and the watchdog         |
+| Start the new app                 | on      | Starts the new app                               |
+| Uninstall the old app             | off     | Removes the old app                              |
 
 The steps run in this order, with a live log. Each step checks the current
 state before it acts and reports "already done" instead of failing, so a
