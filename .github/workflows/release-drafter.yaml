@@ -1,0 +1,16 @@
+---
+name: Release Drafter
+
+permissions:
+  contents: write
+  pull-requests: read
+
+# yamllint disable-line rule:truthy
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  workflows:
+    uses: homeassistant-apps/workflows/.github/workflows/release-drafter.yaml@df621bb7ed94d558e31c98a49572076ad28c2313 # main

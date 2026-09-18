@@ -1,0 +1,16 @@
+---
+name: Stale
+
+permissions:
+  issues: write
+  pull-requests: write
+
+# yamllint disable-line rule:truthy
+on:
+  schedule:
+    - cron: "0 8 * * *"
+  workflow_dispatch:
+
+jobs:
+  workflows:
+    uses: homeassistant-apps/workflows/.github/workflows/stale.yaml@df621bb7ed94d558e31c98a49572076ad28c2313 # main

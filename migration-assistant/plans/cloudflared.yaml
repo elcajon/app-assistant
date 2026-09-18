@@ -1,0 +1,21 @@
+---
+version: 1
+id: cloudflared
+name: Cloudflared
+description: >-
+  Moves the Cloudflared app from the repository of brenner-tobias to the
+  repository of the Unofficial Home Assistant Apps organisation.
+source:
+  slug: 9074a9fa_cloudflared
+  name: Cloudflared
+  repository: https://github.com/brenner-tobias/ha-addons
+  min_version: 7.0.0
+target:
+  slug: 396f0234_cloudflared
+  name: Cloudflared
+  repository: https://github.com/homeassistant-apps/repository
+notes: >-
+  The new app takes over the tunnel of the old one, including its credentials,
+  so the tunnel keeps its identity in Cloudflare. Do not delete the tunnel in
+  the Cloudflare dashboard. Check the log of the new app before you uninstall
+  the old one.

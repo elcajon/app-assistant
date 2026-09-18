@@ -1,0 +1,50 @@
+# Home Assistant App: App Migration Assistant
+
+[![Release][release-shield]][release]
+![Project Stage][project-stage-shield]
+![Project Maintenance][maintenance-shield]
+
+Move an installed app to its new repository, keeping options and data.
+
+## About
+
+When an app moves to another repository, Home Assistant treats the new one as
+a completely different app: new slug, empty configuration, empty data folder.
+This app does the move for you, from a panel in the sidebar:
+
+- Installs the new repository and the new app
+- Backs up both apps before it changes anything
+- Copies the configuration and the internal data folder of the old app
+- Starts the new app and stops the old one from starting again
+
+Every step checks the current state first, so a migration that failed half way
+can simply be started again.
+
+Which apps can be migrated is described by small YAML plans. Adding an app
+means adding a plan, not changing code.
+
+**Warning**: this app needs the Supervisor `admin` role and Docker access, and
+only works with protection mode turned off. Uninstall it once your migration
+is done.
+
+{% if channel == "edge" %}
+## WARNING! THIS IS AN EDGE VERSION!
+
+This Home Assistant Apps repository contains edge builds of apps.
+Edge builds apps are based upon the latest development version.
+
+- They may not work at all.
+- They might stop working at any time.
+- They could have a negative impact on your system.
+
+This repository was created for:
+
+- Anybody willing to test.
+- Anybody interested in trying out upcoming apps or app features.
+- Developers.
+
+{% endif %}
+[maintenance-shield]: https://img.shields.io/maintenance/yes/2026.svg
+[project-stage-shield]: https://img.shields.io/badge/project%20stage-experimental-yellow.svg
+[release-shield]: https://img.shields.io/badge/version-{{ version }}-blue.svg
+[release]: {{ repo }}/tree/{{ version }}

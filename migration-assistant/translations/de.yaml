@@ -1,0 +1,12 @@
+---
+configuration:
+  log_level:
+    name: Log Level
+    description: >-
+      Bestimmt das Log Level der App.
+  extra_plans:
+    name: Eigene Migrationspläne
+    description: >-
+      Liest zusätzlich Migrationspläne aus dem Ordner plans im
+      Konfigurationsverzeichnis dieser App. Damit lassen sich Apps migrieren,
+      für die diese App keinen Plan mitbringt.
