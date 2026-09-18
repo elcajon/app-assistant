@@ -1,0 +1,26 @@
+---
+name: App Assistant
+version: dev
+slug: app-assistant
+description: Move an installed app to its new repository, keeping options and data
+url: https://github.com/elcajon/app-assistant
+ingress: true
+panel_icon: mdi:transit-transfer
+panel_title: App Assistant
+startup: services
+init: false
+arch:
+  - aarch64
+  - amd64
+docker_api: true
+hassio_api: true
+hassio_role: admin
+map:
+  - type: app_config
+    read_only: false
+schema:
+  log_level: list(trace|debug|info|notice|warning|error|fatal)?
+  extra_plans: bool?
+options:
+  log_level: info
+  extra_plans: false

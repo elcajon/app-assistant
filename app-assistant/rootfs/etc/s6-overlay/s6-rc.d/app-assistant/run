@@ -1,0 +1,14 @@
+#!/command/with-contenv bashio
+# ==============================================================================
+# Home Assistant App: App Assistant
+# Runs the migration assistant web server
+# ==============================================================================
+bashio::log.info 'Starting the App Assistant...'
+
+export LOG_LEVEL
+LOG_LEVEL=$(bashio::string.lower "$(bashio::config 'log_level' 'info')")
+
+export EXTRA_PLANS
+EXTRA_PLANS=$(bashio::config 'extra_plans' 'false')
+
+exec python3 -u /usr/lib/app-assistant/server.py

@@ -1,0 +1,45 @@
+---
+name: App Assistant tests
+
+# yamllint disable-line rule:truthy
+on:
+  workflow_call:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Install test dependencies
+        run: |
+          python -m pip install -r requirements-dev.txt
+          sudo apt-get update
+          sudo apt-get install -y jq
+      - name: Check Python and run regression tests
+        run: |
+          ruff check app-assistant/rootfs/usr/lib/app-assistant tests
+          ruff format --check app-assistant/rootfs/usr/lib/app-assistant tests
+          pytest -q
+
+  ui:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+      - name: Install isolated browser test dependency
+        run: |
+          npm install --prefix /tmp/app-assistant-ui --no-save playwright@1.62.1
+          /tmp/app-assistant-ui/node_modules/.bin/playwright install --with-deps chromium
+      - name: Exercise migration UI with simulated API
+        env:
+          NODE_PATH: /tmp/app-assistant-ui/node_modules
+        run: node tests/ui-smoke.cjs

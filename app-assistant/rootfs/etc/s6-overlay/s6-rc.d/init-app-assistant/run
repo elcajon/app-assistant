@@ -1,0 +1,27 @@
+#!/command/with-contenv bashio
+# ==============================================================================
+# Home Assistant App: App Assistant
+# Checks the environment the migration will run in
+# ==============================================================================
+declare protected
+
+bashio::log.info 'Preparing the App Assistant...'
+
+if ! bashio::supervisor.ping; then
+    bashio::exit.nok 'Supervisor is not reachable'
+fi
+
+protected=$(bashio::addon.protected 'self')
+if bashio::var.true "${protected}"; then
+    bashio::log.warning
+    bashio::log.warning 'Protection mode is enabled for this app.'
+    bashio::log.warning
+    bashio::log.warning 'Migration is blocked without Docker access.'
+    bashio::log.warning 'Turn protection mode off to enable migration,'
+    bashio::log.warning 'in the app info panel and restart this app.'
+    bashio::log.warning
+else
+    bashio::log.info 'Protection mode is disabled, Docker access is available'
+fi
+
+mkdir -p /config/plans

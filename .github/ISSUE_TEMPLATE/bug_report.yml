@@ -1,7 +1,7 @@
 ---
 # yamllint disable rule:line-length
-name: Report an issue with Home Assistant App Migration Assistant
-description: Report an issue with Home Assistant App Migration Assistant.
+name: Report an issue with App Assistant
+description: Report an issue with the Home Assistant App Assistant.
 body:
   - type: markdown
     attributes:
@@ -23,14 +23,14 @@ body:
     validations:
       required: true
     attributes:
-      label: What version of App Migration Assistant has the issue?
+      label: What version of App Assistant has the issue?
       placeholder: 1.x.x
       description: >-
         Can be found in:
-        [Settings -> Add-ons -> App Migration Assistant](https://my.home-assistant.io/redirect/supervisor/).
+        [Settings -> Add-ons -> App Assistant](https://my.home-assistant.io/redirect/supervisor/).
   - type: input
     attributes:
-      label: What was the last working version of App Migration Assistant?
+      label: What was the last working version of App Assistant?
       placeholder: 1.x.x
       description: >
         If known, otherwise leave blank.

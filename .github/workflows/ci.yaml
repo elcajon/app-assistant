@@ -18,5 +18,8 @@ permissions:
   contents: write
 
 jobs:
+  tests:
+    uses: ./.github/workflows/tests.yaml
   workflows:
+    needs: tests
     uses: homeassistant-apps/workflows/.github/workflows/addon-ci.yaml@df621bb7ed94d558e31c98a49572076ad28c2313 # main

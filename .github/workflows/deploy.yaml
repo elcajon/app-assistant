@@ -39,6 +39,8 @@ jobs:
     steps:
       - name: ⤵️ Check out code from GitHub
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.event.workflow_run.head_sha || github.sha }}
       - name: 🚀 Run app information action
         id: information
         uses: homeassistant-apps/action-app-information@b895bf87f1fe6f3250341ee94b5317360a3b2451 # v2
@@ -53,7 +55,7 @@ jobs:
       - name: ℹ️ Gather version and environment
         id: release
         run: |
-          sha="${{ github.sha }}"
+          sha="${{ github.event.workflow_run.head_sha || github.sha }}"
           environment="edge"
           version="${sha:0:7}"
           if [[ "${{ github.event_name }}" = "release" ]]; then
@@ -82,6 +84,8 @@ jobs:
     steps:
       - name: ⤵️ Check out code from GitHub
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.event.workflow_run.head_sha || github.sha }}
       - name: 🏗 Set up QEMU
         uses: docker/setup-qemu-action@99012661954931238ded8c8b007157a8430204e1 # v4.4.0
       - name: 🏗 Set up Docker Buildx
@@ -123,7 +127,7 @@ jobs:
             BUILD_DATE=${{ steps.flags.outputs.date }}
             BUILD_DESCRIPTION=${{ needs.information.outputs.description }}
             BUILD_NAME=${{ needs.information.outputs.name }}
-            BUILD_REF=${{ github.sha }}
+            BUILD_REF=${{ github.event.workflow_run.head_sha || github.sha }}
             BUILD_REPOSITORY=${{ github.repository }}
             BUILD_VERSION=${{ needs.information.outputs.version }}
       - name: 🚀 Push

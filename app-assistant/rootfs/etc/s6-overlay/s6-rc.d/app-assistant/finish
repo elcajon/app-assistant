@@ -1,0 +1,11 @@
+#!/command/with-contenv bashio
+# ==============================================================================
+# Home Assistant App: App Assistant
+# Take down the S6 supervision tree when the web server fails
+# ==============================================================================
+if [[ "${1}" -ne 0 ]] && [[ "${1}" -ne 256 ]]; then
+    bashio::log.warning 'The migration assistant crashed, halting app'
+    /run/s6/basedir/bin/halt
+fi
+
+bashio::log.info 'The migration assistant stopped, restarting...'
