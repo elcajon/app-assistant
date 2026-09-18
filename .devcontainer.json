@@ -14,7 +14,11 @@
   },
   "customizations": {
     "vscode": {
-      "extensions": ["timonwong.shellcheck", "esbenp.prettier-vscode", "ms-python.python"],
+      "extensions": [
+        "timonwong.shellcheck",
+        "esbenp.prettier-vscode",
+        "ms-python.python"
+      ],
       "settings": {
         "terminal.integrated.profiles.linux": {
           "zsh": {
