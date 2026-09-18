@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+# ==============================================================================
+# Lets the Supervisor's container network reach the internet in a devcontainer
+#
+# GitHub Codespaces still carries iptables-legacy rules, where the FORWARD chain
+# has a DROP policy and only docker0 is allowed. The Supervisor creates its own
+# "hassio" bridge and writes the matching rules into the nftables backend. The
+# kernel evaluates both backends, so every packet leaving the Supervisor or an
+# app is dropped, and the Supervisor loops with "Error on installing cli
+# plugin, retrying in 30sec".
+#
+# On a local Docker the legacy table has no DROP policy and this script does
+# nothing. The rules are added only when they are missing, so it can run again
+# on every start of the container.
+# ==============================================================================
+set -e
+
+if ! command -v iptables-legacy > /dev/null 2>&1; then
+    exit 0
+fi
+
+if ! sudo iptables-legacy -S FORWARD 2> /dev/null | grep -q '^-P FORWARD DROP'; then
+    exit 0
+fi
+
+add_rule() {
+    if ! sudo iptables-legacy -C "$@" 2> /dev/null; then
+        sudo iptables-legacy -I "$@"
+    fi
+}
+
+add_rule FORWARD -i hassio '!' -o hassio -j ACCEPT
+add_rule FORWARD -o hassio -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+
+echo "Allowed forwarding for the hassio bridge in the iptables-legacy table."
