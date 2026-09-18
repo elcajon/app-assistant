@@ -16,8 +16,8 @@ and uninstall it again.
 
 1. Add the app repository to Home Assistant, install "App Migration Assistant"
    and **do not start it yet**.
-2. Open the app, switch **Protection mode** off in the info panel.
-3. Start the app and open **Migration** in the sidebar.
+1. Open the app, switch **Protection mode** off in the info panel.
+1. Start the app and open **Migration** in the sidebar.
 
 Protection mode has to be off because the internal data folder of an app can
 only be reached from inside the Supervisor container. The Supervisor has no API
@@ -32,18 +32,18 @@ the plan.
 
 Press **Migrate** and choose which of the optional steps should run:
 
-| Step                              | Default | What it does                                     |
-| --------------------------------- | ------- | ------------------------------------------------ |
-| Add the repository of the new app | always  | Adds the store repository of the plan            |
-| Install the new app               | always  | Installs the new app, if it is not installed yet |
-| Back up the new app               | on      | Partial backup, only if the new app existed      |
-| Stop the old app                  | always  | Stops the old app before anything is copied      |
-| Back up the old app               | on      | Partial backup of the old app                    |
-| Copy the configuration            | always  | Copies the options, mapped by the plan           |
-| Copy the internal data            | always  | Copies `/data` of the old app to the new one     |
-| Set the old app to manual start   | always  | Turns off start on boot and the watchdog         |
-| Start the new app                 | on      | Starts the new app                               |
-| Uninstall the old app             | off     | Removes the old app                              |
+| Step                    | Default | What it does                    |
+| ----------------------- | ------- | ------------------------------- |
+| Add the repository      | always  | Adds the store repository       |
+| Install the new app     | always  | Only if it is not installed yet |
+| Back up the new app     | on      | Only if the new app existed     |
+| Stop the old app        | always  | Before anything is copied       |
+| Back up the old app     | on      | Partial backup of the old app   |
+| Copy the configuration  | always  | Options, mapped by the plan     |
+| Copy the internal data  | always  | `/data` of the old app          |
+| Old app to manual start | always  | Turns off boot and watchdog     |
+| Start the new app       | on      | Starts the new app              |
+| Uninstall the old app   | off     | Removes the old app             |
 
 The steps run in this order, with a live log. Each step checks the current
 state before it acts and reports "already done" instead of failing, so a

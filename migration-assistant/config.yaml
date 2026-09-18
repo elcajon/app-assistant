@@ -5,7 +5,6 @@ slug: migration-assistant
 description: Move an installed app to its new repository, keeping options and data
 url: https://github.com/elcajon/app-migration-assistant
 ingress: true
-ingress_port: 8099
 panel_icon: mdi:transit-transfer
 panel_title: Migration
 startup: services

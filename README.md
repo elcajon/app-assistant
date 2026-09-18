@@ -23,16 +23,15 @@ means setting up the tunnel again, by hand, on every installation out there.
 
 This app does the move from a panel in the sidebar:
 
-| Step                              |                                              |
-| --------------------------------- | -------------------------------------------- |
-| Add the repository of the new app | always                                       |
-| Install the new app               | always                                       |
-| Back up both apps                 | on by default                                |
-| Copy the configuration            | mapped by the plan, unknown options reported |
-| Copy the internal data folder     | always                                       |
-| Set the old app to manual start   | always                                       |
-| Start the new app                 | on by default                                |
-| Uninstall the old app             | off by default                               |
+- Adds the repository of the new app
+- Installs the new app
+- Backs up both apps, on by default
+- Copies the configuration, mapped by the plan, and reports the options the
+  new app does not know
+- Copies the internal data folder of the old app
+- Sets the old app to manual start
+- Starts the new app, on by default
+- Uninstalls the old app, off by default
 
 Every step checks the current state first, so a migration that failed half way
 can be started again and ends in the same state. Nothing is deleted unless you
