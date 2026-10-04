@@ -7,7 +7,7 @@ FROM ${BUILD_FROM}
 ENV S6_VERBOSITY="1"
 
 # renovate: datasource=repology depName=python3 packageName=alpine_3_24/python3 versioning=loose
-ARG PYTHON3_VERSION="3.14.7-r1"
+ARG PYTHON3_VERSION="3.14.8-r0"
 # renovate: datasource=repology depName=py3-yaml packageName=alpine_3_24/py3-yaml versioning=loose
 ARG PY3_YAML_VERSION="6.0.3-r2"
 
